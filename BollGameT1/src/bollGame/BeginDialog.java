@@ -51,7 +51,11 @@ public class BeginDialog extends JFrame implements ActionListener {
 				return;
 			}
 			SumNumber = Integer.parseInt(jtf.getText());
-			new BallFrame();
+			try {
+				new BallFrame();
+			}catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			this.dispose();
 		}
 	}

@@ -34,6 +34,7 @@ public class Ball extends Thread {
             bf.repaint();  
         }
     }  
+    //是否出界
     public boolean isOver(){
 		distX = Math.abs(BallFrame.mouseX - x);
         distY = Math.abs(BallFrame.mouseY - y);
