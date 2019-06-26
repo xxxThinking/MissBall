@@ -57,16 +57,16 @@ public class BallFrame extends JFrame {
         this.setSize(frameWidth, frameHeight);  
         this.setDefaultCloseOperation(3);  
         this.setLocationRelativeTo(null);  //居中
-        this.getContentPane().setBackground(Color.BLACK); //内容面板 
+        this.getContentPane().setBackground(Color.WHITE); //内容面板 
         this.count = 0;
         
         centerPanel = new JPanel();
-        centerPanel.setBackground(Color.BLACK);
-        this.add(centerPanel,BorderLayout.CENTER);
-        this.setVisible(true);
+        centerPanel.setBackground(Color.WHITE);
+        this.add(centerPanel,BorderLayout.CENTER);//边界布局中心
+        this.setVisible(true);//可视
        
-        Image cur = createImage(40,40);
-        cur.getGraphics().fillRect(0,0,40,40);
+        Image cur = createImage(90,90);
+        cur.getGraphics().fillRect(0,0,90,90);
         Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(cur, new Point(0, 0), "A");	
         centerPanel.setCursor(cursor);
         

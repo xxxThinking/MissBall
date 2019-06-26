@@ -17,29 +17,32 @@ import javax.swing.JTextField;
 public class BeginDialog extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	public static int SumNumber = 0;
-	private JTextField jtf ;
+	private JTextField jtf ;//文本标签
 	private JButton btn;
-	private JLabel lable ;
+	private JLabel lable ;//标签
 	
 	public BeginDialog (){
 		this.setSize(350, 180);  
-        this.setDefaultCloseOperation(3); 
+        this.setDefaultCloseOperation(3); //3 exit_on_close 直接关闭应用程序
         this.setLocationRelativeTo(null);  //居中
         this.setAlwaysOnTop(true);
-        this.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 25)); 
+        this.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 25)); //布局格式 居中
+        
 		lable = new JLabel("输入小球数量："); 
-		lable.setForeground(Color.black);  
+		lable.setForeground(Color.BLACK);  
 		lable.setFont(new Font("黑体", Font.PLAIN, 14));
-		this.add(lable);
+		this.add(lable); //加入窗口
+		
+		
 		jtf= new JTextField("5",10);
-
 		this.add(jtf);
+		
 		btn = new JButton("开始游戏");
 		btn.setFont(new Font("黑体", Font.PLAIN, 18));
 		btn.setBackground(Color.WHITE);	
 		this.add(btn);
-		btn.addActionListener(this);
 		
+		btn.addActionListener(this);
 		this.setVisible(true);
 	}
 	
