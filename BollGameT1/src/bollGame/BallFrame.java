@@ -67,7 +67,7 @@ public class BallFrame extends JFrame {
        
         Image cur = createImage(90,90);
         cur.getGraphics().fillRect(0,0,90,90);
-        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(cur, new Point(0, 0), "A");	
+        Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(cur, new Point(0,0), "A");	//new point 空间坐标
         centerPanel.setCursor(cursor);
         
         createBall(BeginDialog.SumNumber);
@@ -94,7 +94,7 @@ public class BallFrame extends JFrame {
 	  }
 	  
 	  public void addBall(){
-		  Ball ball = new Ball(new Color(rand.nextInt(255), rand.nextInt(255),  
+		  Ball ball = new Ball(new Color(rand.nextInt(255), rand.nextInt(255),  //0-255
                   rand.nextInt(255)), rand.nextInt(650), rand.nextInt(600), 50,  
                   rand.nextInt(4) + 1, rand.nextInt(4) + 1, this);
           ball.start();
@@ -120,6 +120,7 @@ public class BallFrame extends JFrame {
 	            // 画出小球  
 	            g.fillOval(list.get(i).getX(),list.get(i).getY(), list.get(i).getRadiu(),list.get(i).getRadiu()); 
 	      }
+		  
 		  g.setColor(new Color(123,123,123));
 		  g.setFont(new Font("Serif", Font.PLAIN, 30));
 		  g.drawString(timecount.showTime(), 355, 70);
@@ -139,7 +140,7 @@ public class BallFrame extends JFrame {
 					timecount.update();
 					repaint();
 					if(count%200==0){
-						addBall();
+						addBall();//
 					}
 				}
 				if (gameOver != lastOver){
@@ -147,7 +148,7 @@ public class BallFrame extends JFrame {
 				}
 				lastOver = gameOver;
 			}
-		}, 0 , 50);
+		}, 0 , 50);//50ms执行一次
 	 }
 	 
 	 public void isAgain(){
