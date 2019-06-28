@@ -134,13 +134,13 @@ public class BallFrame extends JFrame {
 		 timer = new Timer();
 		 timer.schedule(new TimerTask() {
 			//private boolean lastGameover;
-			public void run() {	
+			public void run() {	//任务
 				if (!gameOver){
 					count++;
 					timecount.update();
 					repaint();
-					if(count%200==0){
-						addBall();//
+					if(count%200==0){//10000ms每50ms执行一次增加一个小球
+						addBall();
 					}
 				}
 				if (gameOver != lastOver){
@@ -154,19 +154,20 @@ public class BallFrame extends JFrame {
 	 public void isAgain(){
 		response=JOptionPane.showConfirmDialog(this, "您存活了"+timecount.showTime()+"秒,是否重新开始游戏？","GAMEOVER",JOptionPane.OK_CANCEL_OPTION);
 		//new BeginDialog();
-   	    if (response == 0) {   
-            if (list.size() != 0) {  
+   	    if (response == 0) {   //确定
+            if (list.size() != 0) {
                 // 现将原来的对象从队列中移除  
                 list.removeAll(list); 
                 gameOver = true;
                 new BeginDialog();
             } 
-   	    } else if (response == -1 || response == 1) { 
+   	    } else if (response == -1 || response == 1) { //取消
        	// 如果点击关闭，则将线程对象从队列中移除  
             list.removeAll(list);  
-        } else{
+            System.exit(0);
+        }else {  //关闭窗口
         	System.exit(0);
-        }
+        } 
 	 }
  
 	// 碰撞函数  
