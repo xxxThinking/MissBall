@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.IOException;
@@ -16,9 +18,14 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 
 
 public class BallFrame extends JFrame {
@@ -109,6 +116,78 @@ public class BallFrame extends JFrame {
 		       // 调用碰撞函数  
 	        }
 	    }
+	  
+      JMenuBar bar = new JMenuBar();
+      // 创建菜单对象
+      JMenu menu_menu = new JMenu("菜单");
+      JMenu difficulty_menu = new JMenu("难度");
+      JMenu help_menu = new JMenu("帮助");
+      // 创建菜单选项对象
+      JMenuItem star_item = new JMenuItem("开始");
+      JMenuItem exit_item = new JMenuItem("退出");
+      JMenuItem help_item = new JMenuItem("游戏说明");
+      JMenuItem about_item = new JMenuItem("关于");
+      // 创建单选选项
+      JRadioButtonMenuItem easy_item = new JRadioButtonMenuItem(
+                      "简单");
+      JRadioButtonMenuItem middle_item = new JRadioButtonMenuItem(
+                      "中等");
+      JRadioButtonMenuItem hard_item = new JRadioButtonMenuItem(
+                      "困难");
+      // 创建一个按钮组
+      ButtonGroup group = new ButtonGroup();
+      // 将单选按钮添加到按钮组中
+      
+      // 将单选按钮添加到菜单中
+      
+      // 通过匿名内部类来创建动作监听器
+      ActionListener listener = new ActionListener() {
+              public void actionPerformed1(ActionEvent e) {
+                      String command = e.getActionCommand();
+                      // 如果选择开始，则创建线程对象
+                      if (command.equals("开始") && list.size() == 0) {
+                              creatBall(20, 1);
+                      }
+                      // 如果选择退出按钮，则退出程序
+                      if (command.equals("退出")) {
+                              System.exit(0);
+                      }
+                      // 如果选择简单按钮
+                      if (command.equals("简单") && list.size() == 0) {
+                              creatBall(20, 1);
+                      }
+                      // 如果选择中等按钮
+                      if (command.equals("中等") && list.size() == 0) {
+                              creatBall(50, 2);
+                      }
+                      if (command.equals("困难") && list.size() == 0) {
+                              creatBall(40, 2);
+                      }
+                      if (command.equals("游戏说明")) {
+                              JOptionPane.showMessageDialog(null,
+                                              "移动鼠标，用挡板接球，如果接不住，就算输了……\n游戏可以选择难度，包括简单、中等、困难");
+                      }
+                      if (command.equals("关于")) {
+                              JOptionPane
+.showMessageDialog(null,
+"这是一个用Java编写的小游戏……\n制作人：沈冠军\n时间：2010年8月\n版权所有,翻版必究！");
+                      }
+              }
+
+			private void creatBall(int i, int j) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+      };
+    
+     
+	  
 	  public void drawAll(){
 		  Image image = createImage(frameWidth,frameHeight);
 		  Graphics g = image.getGraphics();
@@ -177,28 +256,29 @@ public class BallFrame extends JFrame {
         for (int i = 0; i < list.size(); i++) {  
             for (int j = 0; j < list.size(); j++) {  
                 // 计算两个小球间的距离  
-                dis[i][j] = Math.sqrt(Math.pow(list.get(i).getX() - list.get(j).getX(),  
+                dis[i][j] = Math.sqrt(Math.pow(list.get(i).getX() - list.get(j).getX(),  //x 2 y 2 = z 2
                         2) + Math.pow(list.get(i).getY() - list.get(j).getY(), 2));  
             }  
         }  
         for (int i = 0; i < list.size(); i++) {  
-            for (int j = i + 1; j < list.size(); j++) {  
-                if (dis[i][j] < (list.get(i).getRadiu() + list.get(j).getRadiu()) / 2) {  
+            for (int j = i + 1; j < list.size(); j++) {  //同一个小球不做计算
+                if (dis[i][j] < (list.get(i).getRadiu() + list.get(j).getRadiu()) / 2) { //两球距离小于两球直径
                     int t;  
-                    // 交换小球x方向的速度  
+                    // 交换x方向的
                     t = list.get(i).getVx();  
                     list.get(i).setVx(list.get(j).getVx());  
                     list.get(j).setVx(t);  
-                    // 交换小球y方向的速度  
+                    // 交换y方向的
                     t = list.get(i).getVy();  
                     list.get(i).setVy(list.get(j).getVy());  
                     list.get(j).setVy(t);  
                     // 确定碰撞后第二个小球的位置  
-                    int x2 = list.get(j).getX() - list.get(i).getX(), y2 = list.get(j)  
-                            .getY() - list.get(i).getY();  
-                    list.get(j).setX(list.get(i).getX() + x2);  
-                    list.get(j).setY(list.get(j).getY() + y2);  
-                } else {  
+                    int x2 = list.get(j).getX() - list.get(i).getX(),//半径得位置
+                        	y2 = list.get(j).getY() - list.get(i).getY();  
+                        list.get(j).setX(list.get(i).getX() + x2);  //将小球得位置控制在相接触时的位置  i小球直径与半径的和与J小球位置正好是刚接触时
+                        list.get(j).setY(list.get(j).getY() + y2);  
+                    } else {  
+                    	
                 }  
             }  
         }  

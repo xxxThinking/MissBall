@@ -39,7 +39,7 @@ public class Ball extends Thread {
 		distX = Math.abs(BallFrame.mouseX - x);
         distY = Math.abs(BallFrame.mouseY - y);
  		distance = distX*distX+distY*distY;
- 		if (distance < 50*50 || BallFrame.mouseX >= 710 - 50 || BallFrame.mouseY >= 650 - 50 ){
+ 		if (distance < 50*50 || BallFrame.mouseX >= 710 - 50 || BallFrame.mouseY >= 650 - 50 ){//鼠标与小球的DISTANCE
  			gameOver = true;
  			bf.setGameOver(gameOver);
  			}
