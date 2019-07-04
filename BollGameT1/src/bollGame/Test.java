@@ -8,6 +8,64 @@ public class Test extends Applet implements Runnable {
  Thread newThread;
  Image OffScreen;
  Graphics drawOffscreen;
+ 
+
+ private Label l2,l3;
+ private Button b2;
+ private Panel p1;
+ private int i=0;
+ 
+
+ public void run1(){
+
+ b2.setEnabled(true);
+ l2.setText(" "+i);
+ l3.setText(" "+i);
+ Button bb=new Button();
+ bb.setBounds(250,380,10,10);
+ p1.add(bb);
+
+ int r=(int)(Math.random()*254+1);
+ int g=(int)(Math.random()*254+1);
+ int b=(int)(Math.random()*254+1);
+
+ bb.setBackground(new Color(r,g,b));
+
+ int rx=(int)(Math.random()*-10)+5;
+ int ry=(int)(Math.random()*10);
+ while(true){
+ int x=bb.getX();
+ int y=bb.getY();
+ if(x<=0){
+ rx=-rx;
+ }
+ else if(x>=520){
+ rx=-rx;
+ }
+ else if(y<=0){
+ ry=-ry;
+ }
+ else if(y>=385){
+ ry=-ry;
+ }
+ else if(rx==0){
+ rx=-3;
+ }
+ else if(ry==0){
+ ry=3;
+ }
+ try{
+ Thread.sleep(2);
+ }
+ catch(InterruptedException e){
+ e.printStackTrace();
+ }
+ bb.setLocation(x-=rx,y-=ry);
+ }
+ }
+
+ 
+ 
  public void init() {
   X = 0;
   Y = 0;
