@@ -3,6 +3,7 @@ package bollGame;
 import java.awt.*;
 import java.applet.*;
 public class Test extends Applet implements Runnable {
+	//测试
  private static final long serialVersionUID = 1L;
  int X, Y, moveX, moveY, width, height;
  Thread newThread;

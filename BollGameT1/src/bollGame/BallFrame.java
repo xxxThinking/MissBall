@@ -185,11 +185,11 @@ public class BallFrame extends JFrame {
             for (int j = i + 1; j < list.size(); j++) {  //同一个小球不做计算
                 if (dis[i][j] < (list.get(i).getRadiu() + list.get(j).getRadiu()) / 2) { //两球距离小于两球直径
                     int t;  
-                    // 交换x方向的
+                    // 交换x方向的速度
                     t = list.get(i).getVx();  
                     list.get(i).setVx(list.get(j).getVx());  
                     list.get(j).setVx(t);  
-                    // 交换y方向的
+                    // 交换y方向的速度
                     t = list.get(i).getVy();  
                     list.get(i).setVy(list.get(j).getVy());  
                     list.get(j).setVy(t);  
